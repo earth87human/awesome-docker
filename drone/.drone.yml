@@ -23,3 +23,13 @@ steps:
   image: alpine
   commands:
   - echo bonjour monde
+
+- name: build_and_push
+  image: plugins/docker
+  settings:
+    username: earth87human
+    password:
+      from_secret: PASSWORD
+    repo: earth87human/drone
+    tags:
+    - latest
