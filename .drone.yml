@@ -1,0 +1,25 @@
+# 指定 pipeline，且由 docker runner 執行
+kind: pipeline
+type: docker
+name: default
+
+# 如果 docker runner 都跑在 arm64 的機器上（如 m1, raspberry pi)，這邊一定要給定 arm64
+# 否則預設 linux / amd64 會導致 pipeline 一直 pending
+platform:
+  os: linux
+  arch: arm64
+
+# for build code 使用，clone 時抓 depth = 1 即可，加快速度
+clone:
+  depth: 1
+
+steps:
+- name: en
+  image: alpine
+  commands:
+  - echo hello world
+
+- name: fr
+  image: alpine
+  commands:
+  - echo bonjour monde
